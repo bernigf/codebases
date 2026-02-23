@@ -38,8 +38,13 @@ def subseqs(s: str, words: list[str]) -> int:
     print(f"Processed word {w} -> chars after removal = {tmp_word_list}")
 
   print(f"\nTotal subsequences in s: {ss_count}\n")
-      
+
+# Example 1
 s = "abcde"
 words = ["a","bb","acd","ace"]
+
+# Example 2
+s = "dsahjpjauf"
+words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]
 
 subseqs(s, words)

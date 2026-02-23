@@ -37,7 +37,12 @@ def num_matching_subseq(s: str, words: list[str]) -> int:
     
     return count
       
+# Example 1
 s = "abcde"
 words = ["a","bb","acd","ace"]
+
+# Example 2
+s = "dsahjpjauf"
+words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]
 
 print(num_matching_subseq(s, words))
