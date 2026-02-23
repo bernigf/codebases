@@ -1,3 +1,18 @@
+"""
+
+Programming exercise
+
+Given an array that represents the meeting times of all AuditBoard employees, 
+we want to return an array with all overlapping meeting times merged.
+A meeting time is represented by a tuple i.e. (1, 3) where the value of the first element represents
+the beginning of the meeting and the value of the second element represents the end of the meeting 
+
+Example Array: [(1,4), (2,5), (7,10), (8, 12), (13, 15)]
+
+Example return value: [(1,5), (7,12), (13,15)]
+
+"""
+
 def merge_meetings(intervals):
     # If no meetings, return empty list immediately
     if not intervals:
