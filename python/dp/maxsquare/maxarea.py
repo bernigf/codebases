@@ -1,32 +1,39 @@
+"""
+
+Dynamic Programming exercise
+
+Source: https://www.youtube.com/watch?v=Ti5vfu9arXQ
+
+Problem:
+
+Given a binary matrix where:
+    1 -> good land
+    0 -> bad land
+Find the area of the largest square consisting only of 1s.
+
+Example:
+land = [
+    [0,1,1,0,1],
+    [1,1,0,1,0],
+    [0,1,1,1,0],
+    [1,1,1,1,0],
+    [1,1,1,1,1],
+    [0,0,0,0,0],
+]
+Output: 9   # (largest 3x3 square)
+
+Approach:
+- dp[i][j] = side length of largest square ending at (i, j)
+- If land[i][j] == 1:
+        dp[i][j] = 1 + min(top, left, diagonal)
+    else:
+        dp[i][j] = 0
+
+Time Complexity: O(m * n)
+Space Complexity: O(m * n)
+"""
+
 def maximal_square(land):
-    """
-    Problem:
-    Given a binary matrix where:
-        1 -> good land
-        0 -> bad land
-    Find the area of the largest square consisting only of 1s.
-
-    Example:
-    land = [
-        [0,1,1,0,1],
-        [1,1,0,1,0],
-        [0,1,1,1,0],
-        [1,1,1,1,0],
-        [1,1,1,1,1],
-        [0,0,0,0,0],
-    ]
-    Output: 9   # (largest 3x3 square)
-
-    Approach:
-    - dp[i][j] = side length of largest square ending at (i, j)
-    - If land[i][j] == 1:
-          dp[i][j] = 1 + min(top, left, diagonal)
-      else:
-          dp[i][j] = 0
-
-    Time Complexity: O(m * n)
-    Space Complexity: O(m * n)
-    """
 
     if not land or not land[0]:
         return 0  # edge case: empty matrix
