@@ -1,4 +1,8 @@
 def sort_parity_simple(nums):
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+
     # STEP 1: Create a new list containing only EVEN numbers.
     # We use the modulo operator (x % 2 == 0). If the remainder is 0, it's even.
     evens = [x for x in nums if x % 2 == 0]
@@ -12,6 +16,10 @@ def sort_parity_simple(nums):
     return evens + odds
 
 def sort_parity_efficient(nums):
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+
     # Initialize two pointers at opposite ends of the array.
     # 'i' starts at the beginning (index 0).
     # 'j' starts at the very last element.
