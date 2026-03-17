@@ -45,10 +45,19 @@ def main():
     p2.start()
 
     print(f"[main pid={os.getpid()}] waiting for threads to finish (join)...")
+    # What if you start a thread and never join?
+    # - Your main code keeps running immediately (so timing/prints/cleanup may happen while threads still work).
+    # - With default (non-daemon) threads, Python typically won't exit until they finish anyway,
+    #   so you lose a clear synchronization point rather than "saving time".
+    # - With daemon threads, Python *can* exit without waiting, and the thread may be cut off mid-work.
     t1.join()
     t2.join()
 
     print(f"[main pid={os.getpid()}] waiting for processes to finish (join)...")
+    # What if you start a process and never join?
+    # - The parent keeps running; it can even finish while children continue in the background.
+    # - On macOS/Linux, finished children can become "zombies" until they are reaped (typically via join()).
+    # - You also lose deterministic completion and clean resource handling (exit codes, queues/pipes, etc.).
     p1.join()
     p2.join()
 
