@@ -13,6 +13,22 @@ class RateLimiter:
     def __init__(self, max_requests: int, window_seconds: int):
         self.max_requests = max_requests
         self.window_seconds = window_seconds
+        # Diccionario que lleva el registro de la cantidad de solicitudes ("hits") realizadas por cada usuario en cada ventana de tiempo. 
+        # Estructura:
+        # - La clave es una cadena formada por "<user_id>:<window_key>", donde:
+        #     - "user_id" identifica de forma única al usuario.
+        #     - "window_key" agrupa las solicitudes en intervalos de duración window_seconds con base en la hora actual.
+        # - El valor es el contador entero de solicitudes realizadas por ese usuario en dicha ventana de tiempo.
+        #
+        # Uso:
+        # - Cuando se recibe una solicitud nueva, se incrementa este contador para esa clave.
+        # - Permite determinar de forma eficiente (O(1)) si el usuario ha superado el límite de peticiones permitidas en la ventana actual.
+        #
+        # Importante:
+        # - En implementaciones distribuidas (multi-servidor), convendría usar un almacenamiento centralizado (como Redis)
+        #   en vez de este diccionario en memoria para que el control de tasa sea coherente entre diferentes instancias.
+        # - Este diccionario crecerá mientras tenga solicitudes, pero en entornos reales debería implementarse una limpieza
+        #   periódica para liberar memoria de ventanas expiradas.
         self.hits = {}
 
     def is_allowed(self, user_id: str) -> bool:
